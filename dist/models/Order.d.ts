@@ -2,39 +2,41 @@ import { Schema, Types } from 'mongoose';
 export declare const Order: import("mongoose").Model<{
     userId: Types.ObjectId;
     items: Types.DocumentArray<{
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }, Types.Subdocument<import("bson").ObjectId, unknown, {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }> & {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }>;
+    totalPrice: number;
     status: "PENDING" | "PAID" | "SHIPPED";
-    totalPrice?: number | null;
+    isDeleted: boolean;
 } & import("mongoose").DefaultTimestampProps, {}, {}, {
     id: string;
 }, import("mongoose").Document<unknown, {}, {
     userId: Types.ObjectId;
     items: Types.DocumentArray<{
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }, Types.Subdocument<import("bson").ObjectId, unknown, {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }> & {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }>;
+    totalPrice: number;
     status: "PENDING" | "PAID" | "SHIPPED";
-    totalPrice?: number | null;
+    isDeleted: boolean;
 } & import("mongoose").DefaultTimestampProps, {
     id: string;
 }, {
@@ -42,20 +44,21 @@ export declare const Order: import("mongoose").Model<{
 }> & Omit<{
     userId: Types.ObjectId;
     items: Types.DocumentArray<{
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }, Types.Subdocument<import("bson").ObjectId, unknown, {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }> & {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }>;
+    totalPrice: number;
     status: "PENDING" | "PAID" | "SHIPPED";
-    totalPrice?: number | null;
+    isDeleted: boolean;
 } & import("mongoose").DefaultTimestampProps & {
     _id: Types.ObjectId;
 } & {
@@ -67,37 +70,39 @@ export declare const Order: import("mongoose").Model<{
 }, {
     userId: Types.ObjectId;
     items: Types.DocumentArray<{
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }, Types.Subdocument<import("bson").ObjectId, unknown, {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }> & {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }>;
+    totalPrice: number;
     status: "PENDING" | "PAID" | "SHIPPED";
-    totalPrice?: number | null;
+    isDeleted: boolean;
 } & import("mongoose").DefaultTimestampProps, import("mongoose").Document<unknown, {}, {
     userId: Types.ObjectId;
     items: Types.DocumentArray<{
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }, Types.Subdocument<import("bson").ObjectId, unknown, {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }> & {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }>;
+    totalPrice: number;
     status: "PENDING" | "PAID" | "SHIPPED";
-    totalPrice?: number | null;
+    isDeleted: boolean;
 } & import("mongoose").DefaultTimestampProps, {
     id: string;
 }, import("mongoose").ResolveSchemaOptions<{
@@ -105,20 +110,21 @@ export declare const Order: import("mongoose").Model<{
 }>> & Omit<{
     userId: Types.ObjectId;
     items: Types.DocumentArray<{
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }, Types.Subdocument<import("bson").ObjectId, unknown, {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }> & {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     }>;
+    totalPrice: number;
     status: "PENDING" | "PAID" | "SHIPPED";
-    totalPrice?: number | null;
+    isDeleted: boolean;
 } & import("mongoose").DefaultTimestampProps & {
     _id: Types.ObjectId;
 } & {
@@ -131,20 +137,21 @@ export declare const Order: import("mongoose").Model<{
     [x: string]: import("mongoose").SchemaDefinitionProperty<any, any, import("mongoose").Document<unknown, {}, {
         userId: Types.ObjectId;
         items: Types.DocumentArray<{
-            quantity?: number | null;
-            priceAtPurchase?: number | null;
-            mangaId?: Types.ObjectId | null;
+            mangaId: Types.ObjectId;
+            quantity: number;
+            priceAtPurchase: number;
         }, Types.Subdocument<import("bson").ObjectId, unknown, {
-            quantity?: number | null;
-            priceAtPurchase?: number | null;
-            mangaId?: Types.ObjectId | null;
+            mangaId: Types.ObjectId;
+            quantity: number;
+            priceAtPurchase: number;
         }> & {
-            quantity?: number | null;
-            priceAtPurchase?: number | null;
-            mangaId?: Types.ObjectId | null;
+            mangaId: Types.ObjectId;
+            quantity: number;
+            priceAtPurchase: number;
         }>;
+        totalPrice: number;
         status: "PENDING" | "PAID" | "SHIPPED";
-        totalPrice?: number | null;
+        isDeleted: boolean;
     } & import("mongoose").DefaultTimestampProps, {
         id: string;
     }, import("mongoose").ResolveSchemaOptions<{
@@ -152,20 +159,21 @@ export declare const Order: import("mongoose").Model<{
     }>> & Omit<{
         userId: Types.ObjectId;
         items: Types.DocumentArray<{
-            quantity?: number | null;
-            priceAtPurchase?: number | null;
-            mangaId?: Types.ObjectId | null;
+            mangaId: Types.ObjectId;
+            quantity: number;
+            priceAtPurchase: number;
         }, Types.Subdocument<import("bson").ObjectId, unknown, {
-            quantity?: number | null;
-            priceAtPurchase?: number | null;
-            mangaId?: Types.ObjectId | null;
+            mangaId: Types.ObjectId;
+            quantity: number;
+            priceAtPurchase: number;
         }> & {
-            quantity?: number | null;
-            priceAtPurchase?: number | null;
-            mangaId?: Types.ObjectId | null;
+            mangaId: Types.ObjectId;
+            quantity: number;
+            priceAtPurchase: number;
         }>;
+        totalPrice: number;
         status: "PENDING" | "PAID" | "SHIPPED";
-        totalPrice?: number | null;
+        isDeleted: boolean;
     } & import("mongoose").DefaultTimestampProps & {
         _id: Types.ObjectId;
     } & {
@@ -176,35 +184,36 @@ export declare const Order: import("mongoose").Model<{
 }, {
     userId: Types.ObjectId;
     items: Types.DocumentArray<{
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     } | {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: string | null;
+        mangaId: string;
+        quantity: number;
+        priceAtPurchase: number;
         _id: string;
     }, Types.Subdocument<string | import("bson").ObjectId, unknown, {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     } | {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: string | null;
+        mangaId: string;
+        quantity: number;
+        priceAtPurchase: number;
         _id: string;
     }> & ({
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     } | {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: string | null;
+        mangaId: string;
+        quantity: number;
+        priceAtPurchase: number;
         _id: string;
     })>;
+    totalPrice: number;
     status: "PENDING" | "PAID" | "SHIPPED";
-    totalPrice?: number | null;
+    isDeleted: boolean;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {
@@ -214,35 +223,36 @@ export declare const Order: import("mongoose").Model<{
 }>, {
     userId: Types.ObjectId;
     items: Types.DocumentArray<{
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     } | {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: string | null;
+        mangaId: string;
+        quantity: number;
+        priceAtPurchase: number;
         _id: string;
     }, Types.Subdocument<string | import("bson").ObjectId, unknown, {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     } | {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: string | null;
+        mangaId: string;
+        quantity: number;
+        priceAtPurchase: number;
         _id: string;
     }> & ({
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: Types.ObjectId | null;
+        mangaId: Types.ObjectId;
+        quantity: number;
+        priceAtPurchase: number;
     } | {
-        quantity?: number | null;
-        priceAtPurchase?: number | null;
-        mangaId?: string | null;
+        mangaId: string;
+        quantity: number;
+        priceAtPurchase: number;
         _id: string;
     })>;
+    totalPrice: number;
     status: "PENDING" | "PAID" | "SHIPPED";
-    totalPrice?: number | null;
+    isDeleted: boolean;
     createdAt: NativeDate;
     updatedAt: NativeDate;
 } & {

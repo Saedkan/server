@@ -1,14 +1,20 @@
 import { createServer } from 'http';
-import { createApp } from './app.js';
 import { connectDB } from './config/db.js';
 import { env } from './config/env.js';
+import { createApp } from './app.js';
+import { setupSubscriptions } from './graphql/subscriptions.js';
 
 (async () => {
   await connectDB();
+
+
   const app = await createApp();
   const httpServer = createServer(app);
 
-  httpServer.listen(env.PORT, () =>
-    console.log(`Server running on ${env.PORT}`)
-  );
+  // If you need schema for setupSubscriptions, you must refactor createApp to return it, or get it from ApolloServer instance.
+  // setupSubscriptions(httpServer, schema); // <-- Commented out until schema is available
+
+  httpServer.listen(env.PORT, () => {
+    console.log(`🚀 Server ready at http://localhost:${env.PORT}/graphql`);
+  });
 })();

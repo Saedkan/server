@@ -1,24 +1,23 @@
 import { Order } from '../../models/Order.js';
 import { pubsub, ORDER_UPDATED } from '../../utils/pubsub.js';
-import { adminGuard, authGuard } from '../../middlewares/auth.js';
+import { requireAuth } from '../../middlewares/gqlGuards.js';
 
 export const orderResolver = {
   Query: {
-    getMyOrders: async (_: any, __: any, ctx: any) => {
-      authGuard(ctx);
-      return Order.find({ userId: ctx.user.id });
+    getMyOrders: (_: any, __: any, ctx: any) => {
+      requireAuth(ctx);
+      return Order.find({ userId: ctx.user.id, isDeleted: false });
     },
   },
 
   Mutation: {
-    updateOrderStatus: async (_: any, { orderId, status }: any, ctx: any) => {
-      adminGuard(ctx);
-      const order = await Order.findByIdAndUpdate(
-        orderId,
-        { status },
-        { new: true }
-      );
-      pubsub.publish(ORDER_UPDATED, { orderStatusUpdated: order });
+    createOrder: async (_: any, __: any, ctx: any) => {
+      requireAuth(ctx);
+      const order = await Order.create({
+        userId: ctx.user.id,
+        items: [],
+        totalPrice: 0,
+      });
       return order;
     },
   },

@@ -4,7 +4,7 @@ export declare const User: import("mongoose").Model<{
     isDeleted: boolean;
     email: string;
     passwordHash: string;
-    role: "ADMIN" | "USER";
+    role: "USER" | "ADMIN";
     isBlocked: boolean;
 } & import("mongoose").DefaultTimestampProps, {}, {}, {
     id: string;
@@ -13,7 +13,7 @@ export declare const User: import("mongoose").Model<{
     isDeleted: boolean;
     email: string;
     passwordHash: string;
-    role: "ADMIN" | "USER";
+    role: "USER" | "ADMIN";
     isBlocked: boolean;
 } & import("mongoose").DefaultTimestampProps, {
     id: string;
@@ -24,7 +24,7 @@ export declare const User: import("mongoose").Model<{
     isDeleted: boolean;
     email: string;
     passwordHash: string;
-    role: "ADMIN" | "USER";
+    role: "USER" | "ADMIN";
     isBlocked: boolean;
 } & import("mongoose").DefaultTimestampProps & {
     _id: import("mongoose").Types.ObjectId;
@@ -39,14 +39,14 @@ export declare const User: import("mongoose").Model<{
     isDeleted: boolean;
     email: string;
     passwordHash: string;
-    role: "ADMIN" | "USER";
+    role: "USER" | "ADMIN";
     isBlocked: boolean;
 } & import("mongoose").DefaultTimestampProps, import("mongoose").Document<unknown, {}, {
     name: string;
     isDeleted: boolean;
     email: string;
     passwordHash: string;
-    role: "ADMIN" | "USER";
+    role: "USER" | "ADMIN";
     isBlocked: boolean;
 } & import("mongoose").DefaultTimestampProps, {
     id: string;
@@ -57,7 +57,7 @@ export declare const User: import("mongoose").Model<{
     isDeleted: boolean;
     email: string;
     passwordHash: string;
-    role: "ADMIN" | "USER";
+    role: "USER" | "ADMIN";
     isBlocked: boolean;
 } & import("mongoose").DefaultTimestampProps & {
     _id: import("mongoose").Types.ObjectId;
@@ -73,7 +73,7 @@ export declare const User: import("mongoose").Model<{
         isDeleted: boolean;
         email: string;
         passwordHash: string;
-        role: "ADMIN" | "USER";
+        role: "USER" | "ADMIN";
         isBlocked: boolean;
     } & import("mongoose").DefaultTimestampProps, {
         id: string;
@@ -84,7 +84,7 @@ export declare const User: import("mongoose").Model<{
         isDeleted: boolean;
         email: string;
         passwordHash: string;
-        role: "ADMIN" | "USER";
+        role: "USER" | "ADMIN";
         isBlocked: boolean;
     } & import("mongoose").DefaultTimestampProps & {
         _id: import("mongoose").Types.ObjectId;
@@ -98,7 +98,7 @@ export declare const User: import("mongoose").Model<{
     isDeleted: boolean;
     email: string;
     passwordHash: string;
-    role: "ADMIN" | "USER";
+    role: "USER" | "ADMIN";
     isBlocked: boolean;
     createdAt: NativeDate;
     updatedAt: NativeDate;
@@ -111,7 +111,7 @@ export declare const User: import("mongoose").Model<{
     isDeleted: boolean;
     email: string;
     passwordHash: string;
-    role: "ADMIN" | "USER";
+    role: "USER" | "ADMIN";
     isBlocked: boolean;
     createdAt: NativeDate;
     updatedAt: NativeDate;

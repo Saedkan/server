@@ -1,12 +1,12 @@
-import { verifyToken } from '../utils/jwt.js';
+import { UnauthorizedError, ForbiddenError } from './error.js';
 
-export const authGuard = (context: any) => {
-  if (!context.user) throw new Error('UNAUTHORIZED');
+export const authGuard = (ctx: any) => {
+  if (!ctx.user) throw UnauthorizedError();
 };
 
-export const adminGuard = (context: any) => {
-  authGuard(context);
-  if (context.user.role !== 'ADMIN') {
-    throw new Error('FORBIDDEN');
+export const adminGuard = (ctx: any) => {
+  authGuard(ctx);
+  if (ctx.user.role !== 'ADMIN') {
+    throw ForbiddenError();
   }
 };
