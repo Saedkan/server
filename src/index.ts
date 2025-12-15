@@ -28,10 +28,10 @@ async function start() {
       if (count === 0) {
         console.log('Seeding sample mangas...');
         await Manga.create([
-          { title: 'Naruto', price: 9.99, genres: ['Action', 'Adventure'] },
-          { title: 'One Piece', price: 12.5, genres: ['Adventure', 'Comedy'] },
-          { title: 'Berserk', price: 14.0, genres: ['Dark Fantasy'] },
-          { title: 'Sailor Moon', price: 7.5, genres: ['Magical Girl', 'Romance'] },
+          { title: 'Naruto', price: 9.99, genres: ['Action', 'Adventure'], description: 'Shinobi manga with ninjas', stock: 50, coverImage: 'https://example.com/naruto.jpg' },
+          { title: 'One Piece', price: 12.5, genres: ['Adventure', 'Comedy'], description: 'Pirates adventure', stock: 30, coverImage: 'https://example.com/onepiece.jpg' },
+          { title: 'Berserk', price: 14.0, genres: ['Dark Fantasy'], description: 'Dark fantasy manga', stock: 20, coverImage: 'https://example.com/berserk.jpg' },
+          { title: 'Bleach', price: 7.5, genres: ['Action', 'Supernatural'], description: 'Soul reapers fighting evil spirits', stock: 40, coverImage: 'https://example.com/bleach.jpg' },
         ]);
       }
     } catch (e) {

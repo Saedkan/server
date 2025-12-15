@@ -3,6 +3,7 @@ import { User } from '../../models/User.js';
 import { signToken } from '../../utils/jwt.js';
 import { gqlError } from '../../utils/gqlError.js';
 import { registerSchema, loginSchema } from '../../validators/auth.schema.js';
+import { requireAuth } from '../../middlewares/gqlGuards.js';
 
 export const userResolver = {
   Query: {
@@ -46,5 +47,25 @@ export const userResolver = {
         user,
       };
     },
+
+    updateProfile: async (
+      _: any,
+      { name }: { name: string, password?: string },
+      ctx: any
+    ) => {
+      requireAuth(ctx);
+
+      const user = await User.findByIdAndUpdate(
+        ctx.user.id,
+        { name },
+        { new: true } 
+      );
+
+      if (!user) {
+        gqlError('User not found', 'NOT_FOUND');
+      }
+
+      return user;
+    }
   },
 };

@@ -274,6 +274,34 @@ export declare const resolvers: ({
                 id: string;
             }) | null;
         }>;
+        updateProfile: (_: any, { name }: {
+            name: string;
+            password?: string;
+        }, ctx: any) => Promise<(import("mongoose").Document<unknown, {}, {
+            name: string;
+            isDeleted: boolean;
+            email: string;
+            passwordHash: string;
+            role: "USER" | "ADMIN";
+            isBlocked: boolean;
+        } & import("mongoose").DefaultTimestampProps, {
+            id: string;
+        }, {
+            timestamps: true;
+        }> & Omit<{
+            name: string;
+            isDeleted: boolean;
+            email: string;
+            passwordHash: string;
+            role: "USER" | "ADMIN";
+            isBlocked: boolean;
+        } & import("mongoose").DefaultTimestampProps & {
+            _id: import("mongoose").Types.ObjectId;
+        } & {
+            __v: number;
+        }, "id"> & {
+            id: string;
+        }) | null>;
     };
 } | {
     Query: {

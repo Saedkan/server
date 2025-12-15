@@ -64,6 +64,8 @@ export const typeDefs = `
     register(email: String!, password: String!, name: String!): AuthPayload
     login(email: String!, password: String!): AuthPayload
 
+    updateProfile(name: String!, password: String): User
+
     createManga(
       title: String!
       description: String!
