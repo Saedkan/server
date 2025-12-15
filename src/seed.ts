@@ -7,66 +7,69 @@ import { Order } from './models/Order.js';
 import { Review } from './models/Review.js';
 
 const run = async () => {
-  await mongoose.connect(env.MONGO_URI);
-  console.log('Mongo connected for seeding');
+  try {
+    await mongoose.connect(env.MONGO_URI);
+    console.log('MongoDB connected for seeding');
 
-  // --- Очистка ---
-  await User.deleteMany({});
-  await Manga.deleteMany({});
-  await Order.deleteMany({});
-  await Review.deleteMany({});
+    // --- Очистка коллекций ---
+    await User.deleteMany({});
+    await Manga.deleteMany({});
+    await Order.deleteMany({});
+    await Review.deleteMany({});
 
-  // --- Админ ---
-  const admin = await User.create({
-    email: 'admin@anime.com',
-    passwordHash: await bcrypt.hash('admin123', 10),
-    name: 'Admin',
-    role: 'ADMIN',
-  });
+    // --- Создание админа ---
+    const admin = await User.create({
+      email: 'admin@anime.com',
+      passwordHash: await bcrypt.hash('admin123', 10),
+      name: 'Admin',
+      role: 'ADMIN',
+    });
 
-  // --- Тестовые пользователи ---
-  const user1 = await User.create({
-    email: 'user1@anime.com',
-    passwordHash: await bcrypt.hash('123456', 10),
-    name: 'User One',
-  });
+    // --- Создание пользователей ---
+    const user1 = await User.create({
+      email: 'user1@anime.com',
+      passwordHash: await bcrypt.hash('123456', 10),
+      name: 'User One',
+    });
 
-  const user2 = await User.create({
-    email: 'user2@anime.com',
-    passwordHash: await bcrypt.hash('123456', 10),
-    name: 'User Two',
-  });
+    const user2 = await User.create({
+      email: 'user2@anime.com',
+      passwordHash: await bcrypt.hash('123456', 10),
+      name: 'User Two',
+    });
 
-  // --- Манга ---
-  const mangas = await Manga.insertMany([
-    {
-      title: 'Naruto',
-      description: 'Shinobi manga',
-      price: 10,
-      stock: 50,
-      genres: ['Action', 'Adventure'],
-      coverImage: 'https://example.com/naruto.jpg',
-    },
-    {
-      title: 'One Piece',
-      description: 'Pirates adventure',
-      price: 12,
-      stock: 30,
-      genres: ['Adventure', 'Comedy'],
-      coverImage: 'https://example.com/onepiece.jpg',
-    },
-    {
-      title: 'Bleach',
-      description: 'Soul reapers story',
-      price: 8,
-      stock: 40,
-      genres: ['Action', 'Supernatural'],
-      coverImage: 'https://example.com/bleach.jpg',
-    },
-  ]);
+    // --- Создание манги ---
+    const mangas = await Manga.insertMany([
+      {
+        title: 'Naruto',
+        description: 'Shinobi manga with ninjas',
+        price: 10,
+        stock: 50,
+        genres: ['Action', 'Adventure'],
+        coverImage: 'https://example.com/naruto.jpg',
+      },
+      {
+        title: 'One Piece',
+        description: 'Pirates adventure',
+        price: 12,
+        stock: 30,
+        genres: ['Adventure', 'Comedy'],
+        coverImage: 'https://example.com/onepiece.jpg',
+      },
+      {
+        title: 'Bleach',
+        description: 'Soul reapers fighting evil spirits',
+        price: 8,
+        stock: 40,
+        genres: ['Action', 'Supernatural'],
+        coverImage: 'https://example.com/bleach.jpg',
+      },
+    ]);
 
-  // --- Заказ ---
-  if (mangas[0] && mangas[1]) {
+    // --- Создание заказа ---
+    if (!mangas[0] || !mangas[1]) {
+      throw new Error('Not enough mangas to create an order.');
+    }
     const order = await Order.create({
       userId: user1._id,
       items: [
@@ -77,7 +80,7 @@ const run = async () => {
       status: 'PENDING',
     });
 
-    // --- Ревью ---
+    // --- Создание ревью ---
     await Review.create({
       userId: user1._id,
       mangaId: mangas[0]._id,
@@ -91,15 +94,13 @@ const run = async () => {
       rating: 4,
       comment: 'Really good!',
     });
-  } else {
-    console.warn('Not enough manga documents to create orders and reviews.');
-  }
 
-  console.log('Seeding completed');
-  process.exit(0);
+    console.log('Seeding completed successfully ✅');
+    process.exit(0);
+  } catch (err) {
+    console.error('Error during seeding:', err);
+    process.exit(1);
+  }
 };
 
-run().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+run();

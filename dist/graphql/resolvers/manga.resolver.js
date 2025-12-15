@@ -3,19 +3,48 @@ import { requireAdmin } from '../../middlewares/gqlGuards.js';
 import { createMangaSchema } from '../../validators/manga.schema.js';
 export const mangaResolver = {
     Query: {
-        getMangas: () => Manga.find({ isDeleted: false }),
-        getMangaById: (_, { id }) => Manga.findOne({ _id: id, isDeleted: false }),
-        searchManga: (_, { query }) => Manga.find({ title: new RegExp(query, 'i'), isDeleted: false }),
+        // Получить все манги
+        getMangas: async () => {
+            // создаём новый Query каждый раз
+            return await Manga.find({ isDeleted: false }).exec();
+        },
+        // Получить мангу по ID
+        getMangaById: async (_, { id }) => {
+            return await Manga.findOne({ _id: id, isDeleted: false }).exec();
+        },
+        // Поиск манги по названию
+        searchManga: async (_, { query }) => {
+            return await Manga.find({
+                title: new RegExp(query, 'i'),
+                isDeleted: false,
+            }).exec();
+        },
     },
     Mutation: {
+        // Создание новой манги (только админ)
         createManga: async (_, args, ctx) => {
             requireAdmin(ctx);
             const data = createMangaSchema.parse(args);
-            return Manga.create(data);
+            return await Manga.create(data);
         },
+        // Обновление манги (только админ)
         updateManga: async (_, args, ctx) => {
             requireAdmin(ctx);
-            return Manga.findByIdAndUpdate(args.id, args, { new: true });
+            const { id, ...updateData } = args;
+            return await Manga.findByIdAndUpdate(id, updateData, { new: true }).exec();
+        },
+        // Удаление манги (soft delete, только админ)
+        deleteManga: async (_, { id }, ctx) => {
+            requireAdmin(ctx);
+            return await Manga.findByIdAndUpdate(id, { isDeleted: true }, { new: true }).exec();
+        },
+    },
+    // Пример безопасного подзапроса для поля 'reviews' на Manga
+    Manga: {
+        reviews: async (parent) => {
+            // создаём новый Query каждый раз для подзапроса
+            const Review = (await import('../../models/Review.js')).Review;
+            return await Review.find({ mangaId: parent._id, isDeleted: false }).exec();
         },
     },
 };

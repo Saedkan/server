@@ -1,4 +1,4 @@
-
+import cors from 'cors';
 import express from 'express';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
@@ -8,6 +8,19 @@ import { createContext } from './graphql/context.js';
 
 export const createApp = async () => {
   const app = express();
+  
+  app.use(express.json());
+
+  app.use(
+    cors({
+      origin: 'http://localhost:3000',
+      credentials: true,
+      methods: ['GET', 'POST', 'OPTIONS'],
+      allowedHeaders: [ 'Content-Type', 'Authorization'],
+    })
+  );
+
+  app.options('*', cors());
 
   const server = new ApolloServer({
     typeDefs,
@@ -18,9 +31,10 @@ export const createApp = async () => {
 
   app.use(
     '/graphql',
-    express.json(),
     expressMiddleware(server, {
-      context: async ({ req }) => createContext({ req }),
+      context: async ({ req }) => ({ 
+        token: req.headers.authorization,
+      }),
     })
   );
 

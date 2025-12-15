@@ -19,7 +19,9 @@ export const typeDefs = `
     price: Float!
     stock: Int!
     genres: [String!]!
+    coverImage: String!
     rating: Float!
+    reviews: [Review!]!
   }
 
   type OrderItem {
